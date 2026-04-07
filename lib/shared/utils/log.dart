@@ -23,7 +23,7 @@ class Log {
     logger.e(message, error: error);
   }
 
-  static void failure(String message, [dynamic error]) {
-    logger.wtf(message, error: error);
+  static void fatal(String message, [dynamic error]) {
+    logger.f(message, error: error);
   }
 }

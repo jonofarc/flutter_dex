@@ -22,7 +22,7 @@ class DexSelectionScreen extends StatelessWidget {
       body: BlocBuilder<DexSelectionBloc, DexSelectionState>(
         builder: (blocContext, state) {
           if (state is DexSelectionSuccess) {
-            return DexSelectionViewMobile();
+            return DexSelectionViewMobile(regions: state.regions);
           } else if (state is DexSelectionLoading) {
             return const LoadingWidget(
                 width: double.infinity, height: double.infinity);

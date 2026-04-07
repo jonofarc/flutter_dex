@@ -16,9 +16,9 @@ class DexSelectionLoading extends DexSelectionState {
 }
 
 class DexSelectionSuccess extends DexSelectionState {
-  //final Regions regions;
-  //const DexSelectionSuccess({required this.regions});
-  const DexSelectionSuccess();
+  final Regions regions;
+  const DexSelectionSuccess({required this.regions});
+
 }
 
 class DexSelectionError extends DexSelectionState {

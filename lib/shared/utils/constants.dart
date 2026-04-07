@@ -6,6 +6,7 @@ const paddingDefault = 16.0;
 
 //login base url
 const pokeApiBaseUrl = "https://pokeapi.co/api/v2/";
+const regionsUrl = "region/";
 
 //Error messages
 const String badRequestError = 'Bad Request';

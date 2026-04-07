@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dex/dex_selection/data/models/region.dart';
 
 class DexViewScreen extends StatelessWidget {
-  const DexViewScreen({super.key});
+  DexViewScreen({super.key, required this.region});
+
+
+  Region region;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dex Selection'),
+        title: Text('${region.name} Selection'),
       ),
       body: Center(
-        child: const Text('region list goes here')
+        child: Text('${region.name} list goes here')
       ),
     );
   }

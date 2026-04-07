@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dex/dex_selection/data/models/regions.dart';
 import 'package:flutter_dex/dex_selection/domain/usecases/get_home_content.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/shared/utils/log.dart';
@@ -33,16 +34,10 @@ class DexSelectionBloc extends Bloc<DexSelectionEvent, DexSelectionState> {
 
       final result = await getDexSelectionContent.execute();
 
-      /*
+
       result.fold((error) {
         emit(DexSelectionError(message: error.message));
-      }, (photos) => emit(DexSelectionSuccess()));
-
-
-
-       */
-
-      emit(DexSelectionSuccess());
+      }, (regions) => emit(DexSelectionSuccess(regions: regions)));
 
     } catch (e) {
       Log.debug(e.toString());
