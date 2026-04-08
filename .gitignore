@@ -7,8 +7,6 @@
 .buildlog/
 .history
 
-
-
 # Flutter repo-specific
 /bin/cache/
 /bin/internal/bootstrap.bat
@@ -28,7 +26,7 @@
 version
 analysis_benchmark.json
 
-# packages file containing multi-root paths
+# Packages file containing multi-root paths
 .packages.generated
 
 # Flutter/Dart/Pub related
@@ -110,7 +108,11 @@ coverage/
 # Symbols
 app.*.symbols
 
-# Exceptions to above rules.
+# IDE / Project files
+.idea/
+*.iml
+
+# Exceptions to above rules
 !**/ios/**/default.mode1v3
 !**/ios/**/default.mode2v3
 !**/ios/**/default.pbxuser
