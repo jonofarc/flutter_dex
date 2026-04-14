@@ -7,6 +7,7 @@ const paddingDefault = 16.0;
 //login base url
 const pokeApiBaseUrl = "https://pokeapi.co/api/v2/";
 const regionsUrl = "region/";
+const pokemonUrl = "pokemon-form/";
 
 //Error messages
 const String badRequestError = 'Bad Request';

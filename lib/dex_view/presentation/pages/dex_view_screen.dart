@@ -37,7 +37,7 @@ class DexViewScreen extends StatelessWidget {
           } else {
             return const DexViewViewMobile();
           }
-          return Container();
+          return DexViewViewMobile();
         },
       ),
     );
