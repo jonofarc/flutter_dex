@@ -10,10 +10,12 @@ class PokeDetailsViewMobile extends StatelessWidget {
     super.key,
     this.pokemonForm,
     this.pokemonDetailsSpecies,
+    this.weaknesses = const [],
   });
 
   final PokemonForm? pokemonForm;
   final PokemonDetailsSpecies? pokemonDetailsSpecies;
+  final List<String> weaknesses;
 
   @override
   Widget build(BuildContext context) {
@@ -140,12 +142,12 @@ class PokeDetailsViewMobile extends StatelessWidget {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: const [
-                _Chip(label: "Fire", color: Colors.orange),
-                _Chip(label: "Flying", color: Colors.grey),
-                _Chip(label: "Ice", color: Colors.lightBlue),
-                _Chip(label: "Psychic", color: Colors.pink),
-              ],
+              children: weaknesses.map((weakness) {
+                return _Chip(
+                  label: weakness,
+                  color: Utils.getTypeColor(weakness),
+                );
+              }).toList(),
             ),
           ],
         ),

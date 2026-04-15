@@ -10,7 +10,7 @@ const regionsUrl = "region/";
 const pokemonUrl = "pokemon-form/";
 //pokemon-species/25 pikachu
 const pokemonSpecies = "pokemon-species/";
-const typeUrl = "type";
+const typeUrl = "type/";
 
 //Error messages
 const String badRequestError = 'Bad Request';

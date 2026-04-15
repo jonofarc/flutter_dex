@@ -6,6 +6,7 @@ import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_det
 import 'package:flutter_dex/poke_details/domain/usecases/poke_details_view_content.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/shared/utils/log.dart';
+import 'package:flutter_dex/shared/utils/utils.dart';
 
 part 'poke_details_event.dart';
 part 'poke_details_state.dart';
@@ -42,9 +43,30 @@ class PokeDetailsBloc extends Bloc<PokeDetailsEvent, PokeDetailsState> {
             (species) {
               this.pokemonForm = pokemonForm;
 
+              final pokemonTypes = pokemonForm.types ?? [];
+
+              final weaknesses = pokemonTypes
+                  .map((typeEntry) {
+                    final typeName = typeEntry.type.name;
+                    return Utils.getWeaknessesByName(typeName);
+                  })
+                  .expand((list) => list)
+                  .toSet();
+
+              final resistances = pokemonTypes
+                  .map((typeEntry) {
+                    final typeName = typeEntry.type.name;
+                    return Utils.getResistanceByName(typeName);
+                  })
+                  .expand((list) => list)
+                  .toSet();
+
+              final finalWeaknesses = weaknesses.difference(resistances).toList();
+
               emit(PokeDetailsSuccess(
                 pokemonForm: pokemonForm,
                 pokemonDetailsSpecies: species,
+                weaknesses: finalWeaknesses,
               ));
             },
           );

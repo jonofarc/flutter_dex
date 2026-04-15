@@ -5,6 +5,7 @@ import 'package:flutter_dex/shared/network/failures.dart';
 import 'package:flutter_dex/shared/utils/constants.dart';
 import 'package:flutter_dex/shared/utils/log.dart';
 import 'package:flutter_dex/type/data/models/types.dart';
+import 'package:flutter_dex/type/data/models/types_data_details.dart';
 import 'package:http/http.dart' as http;
 
 class TypesContentRepository {
@@ -26,6 +27,31 @@ class TypesContentRepository {
         }
       } catch (e) {
         Log.debug("failed to parse Type: $e");
+        return Left(ServerFailure(message: e.toString()));
+      }
+    } else {
+      return Left(ServerFailure(message: response.statusCode.toString()));
+    }
+  }
+
+  Future<Either<ServerFailure, TypesDataDetails>> getTypesDataDetails({required String name}) async {
+    final url = pokeApiBaseUrl + typeUrl + name;
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      //firs decode the body to utf8 to avoid problems decoding
+      // special characters such as "ñ, ó, á"
+      final data = json.decode(utf8.decode(response.bodyBytes));
+
+      try {
+        if (data != null) {
+          final typesDataDetails = TypesDataDetails.fromJson(data);
+          return Right(typesDataDetails);
+        } else {
+          return Left(ServerFailure(message: nullResponse));
+        }
+      } catch (e) {
+        Log.debug("failed to parse TypesDataDetails: $e");
         return Left(ServerFailure(message: e.toString()));
       }
     } else {

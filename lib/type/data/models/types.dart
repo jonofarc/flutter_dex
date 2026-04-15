@@ -1,3 +1,4 @@
+import 'package:flutter_dex/type/data/models/types_data_details.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'types.g.dart';
@@ -26,12 +27,15 @@ class TypeResult {
   final String name;
   final String url;
 
+  // This won't be expected in the JSON response
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  TypesDataDetails? typesDataDetails;
+
   TypeResult({
     required this.name,
     required this.url,
+    this.typesDataDetails,
   });
 
   factory TypeResult.fromJson(Map<String, dynamic> json) => _$TypeResultFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TypeResultToJson(this);
 }
