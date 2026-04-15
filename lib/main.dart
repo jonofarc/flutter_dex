@@ -3,16 +3,29 @@ import 'package:flutter_dex/dex_selection/presentation/pages/dex_selection_scree
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/shared/utils/constants.dart';
 import 'package:flutter_dex/shared/widget/widget_utils.dart';
+import 'package:flutter_dex/type/data/models/type_chart.dart';
 
+Future<void> bootstrapApp() async {
+  //fill out cache types and weaknesses here
 
-void main() {
+  final types = serviceLocator<TypeChart>();
+
+  await Future.delayed(Duration(seconds: 1));
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   initServiceLocator();
+
   runApp(const MyApp());
+
+  // run in background
+  bootstrapApp();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +33,6 @@ class MyApp extends StatelessWidget {
       title: appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),

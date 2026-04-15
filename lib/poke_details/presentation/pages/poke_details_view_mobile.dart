@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
 import 'package:flutter_dex/poke_details/domain/mappers/pokemon_form_mapper.dart';
+import 'package:flutter_dex/shared/utils/utils.dart';
 
 class PokeDetailsViewMobile extends StatelessWidget {
   const PokeDetailsViewMobile({
@@ -47,12 +48,15 @@ class PokeDetailsViewMobile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        Utils.capitalize(pokemonForm?.name ?? ""),
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
                         pokemonDetailsSpecies?.flavorTextEntries?.first.flavorText ?? "",
                         style: TextStyle(fontSize: 14),
                       ),
                       SizedBox(height: 12),
-
-                      /// Versions
                       Row(
                         children: [
                           Text("Versions: "),
@@ -66,10 +70,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 20),
-
-            /// 🔹 INFO CARD (BLUE BOX)
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -106,10 +107,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
-
-            /// 🔹 STATS (PLACEHOLDER)
             Container(
               height: 150,
               width: double.infinity,
@@ -119,23 +117,24 @@ class PokeDetailsViewMobile extends StatelessWidget {
               ),
               child: const Center(child: Text("Stats Placeholder")),
             ),
-
             const SizedBox(height: 20),
-
-            /// 🔹 TYPE
             const Text("Type", style: TextStyle(fontSize: 16)),
             const SizedBox(height: 10),
             Row(
-              children: const [
-                _Chip(label: "Grass", color: Colors.green),
-                SizedBox(width: 10),
-                _Chip(label: "Poison", color: Colors.purple),
-              ],
+              children: pokemonForm?.types?.map((typeEntry) {
+                    final typeName = typeEntry.type.name ?? "";
+
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: _Chip(
+                        label: typeName,
+                        color: Utils.getTypeColor(typeName),
+                      ),
+                    );
+                  }).toList() ??
+                  [],
             ),
-
             const SizedBox(height: 20),
-
-            /// 🔹 WEAKNESSES
             const Text("Weaknesses", style: TextStyle(fontSize: 16)),
             const SizedBox(height: 10),
             Wrap(
@@ -155,7 +154,6 @@ class PokeDetailsViewMobile extends StatelessWidget {
   }
 }
 
-/// 🔹 SMALL INFO ITEM
 class _InfoItem extends StatelessWidget {
   final String title;
   final String value;
@@ -175,7 +173,6 @@ class _InfoItem extends StatelessWidget {
   }
 }
 
-/// 🔹 CHIP WIDGET
 class _Chip extends StatelessWidget {
   final String label;
   final Color color;
