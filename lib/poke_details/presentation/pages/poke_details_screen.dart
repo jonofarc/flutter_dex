@@ -26,6 +26,7 @@ class PokeDetailsScreen extends StatelessWidget {
           if (state is PokeDetailsSuccess) {
             return PokeDetailsViewMobile(
               pokemonForm: state.pokemonForm,
+              pokemonDetailsSpecies: state.pokemonDetailsSpecies,
             );
           } else if (state is PokeDetailsLoading) {
             return const LoadingWidget(width: double.infinity, height: double.infinity);

@@ -8,6 +8,8 @@ const paddingDefault = 16.0;
 const pokeApiBaseUrl = "https://pokeapi.co/api/v2/";
 const regionsUrl = "region/";
 const pokemonUrl = "pokemon-form/";
+//pokemon-species/25 pikachu
+const pokemonSpecies = "pokemon-species/";
 
 //Error messages
 const String badRequestError = 'Bad Request';

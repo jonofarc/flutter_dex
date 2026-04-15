@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dex/poke_details/data/models/pokemon_form.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
 import 'package:flutter_dex/poke_details/domain/usecases/poke_details_view_content.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/shared/utils/log.dart';
@@ -29,13 +30,24 @@ class PokeDetailsBloc extends Bloc<PokeDetailsEvent, PokeDetailsState> {
     Log.debug("fetching dex view content");
 
     try {
-      final result = await getPokeDetailsContent.getPokeDexData(id: id);
+      final pokedexData = await getPokeDetailsContent.getPokeDexData(id: id);
 
-      result.fold(
+      final pokemonSpeciesData = await getPokeDetailsContent.getPokemonDetailsSpeciesData(id: id);
+
+      pokedexData.fold(
         (error) => emit(PokeDetailsError(message: error.message)),
         (pokemonForm) {
-          this.pokemonForm = pokemonForm;
-          emit(PokeDetailsSuccess(pokemonForm: pokemonForm));
+          pokemonSpeciesData.fold(
+            (error) => emit(PokeDetailsError(message: error.message)),
+            (species) {
+              this.pokemonForm = pokemonForm;
+
+              emit(PokeDetailsSuccess(
+                pokemonForm: pokemonForm,
+                pokemonDetailsSpecies: species,
+              ));
+            },
+          );
         },
       );
     } catch (e) {

@@ -1,5 +1,5 @@
-import 'package:flutter_dex/poke_details/data/models/pokemon_type_slot.dart';
-import 'package:flutter_dex/poke_details/data/models/version_group.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_type_slot.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon_form/version_group.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'pokemon_ref.dart';

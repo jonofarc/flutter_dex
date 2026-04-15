@@ -1,33 +1,196 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dex/poke_details/data/models/pokemon_form.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
+import 'package:flutter_dex/poke_details/domain/mappers/pokemon_form_mapper.dart';
 
 class PokeDetailsViewMobile extends StatelessWidget {
-  const PokeDetailsViewMobile({super.key, this.pokemonForm});
+  const PokeDetailsViewMobile({
+    super.key,
+    this.pokemonForm,
+    this.pokemonDetailsSpecies,
+  });
 
   final PokemonForm? pokemonForm;
-
-  String getImageUrl(String? url) {
-    String id = url?.split('/').where((e) => e.isNotEmpty).last ?? "";
-
-    if (id.trim().isNotEmpty) {
-      // Using PokeAPI sprites for consistency
-      return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
-    } else {
-      // empty placeholder image
-      return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png';
-    }
-  }
+  final PokemonDetailsSpecies? pokemonDetailsSpecies;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dex View Selection')),
-      body: Center(
-        child: Text(
-          pokemonForm?.name ?? "no pokemon Selected",
-          style: TextStyle(fontSize: 18, color: Colors.grey),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 250,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: pokemonForm?.imageUrl ?? "",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        pokemonDetailsSpecies?.flavorTextEntries?.first.flavorText ?? "",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(height: 12),
+
+                      /// Versions
+                      Row(
+                        children: [
+                          Text("Versions: "),
+                          Icon(Icons.circle, color: Colors.blue, size: 14),
+                          SizedBox(width: 8),
+                          Icon(Icons.circle, color: Colors.red, size: 14),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔹 INFO CARD (BLUE BOX)
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade400,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      _InfoItem(title: "Height", value: "2' 04\""),
+                      _InfoItem(title: "Category", value: "Seed"),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      _InfoItem(title: "Weight", value: "15.2 lbs"),
+                      _InfoItem(title: "Abilities", value: "Overgrow"),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    children: const [
+                      Text("Gender"),
+                      SizedBox(width: 8),
+                      Icon(Icons.male),
+                      SizedBox(width: 4),
+                      Icon(Icons.female),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔹 STATS (PLACEHOLDER)
+            Container(
+              height: 150,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade400,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(child: Text("Stats Placeholder")),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔹 TYPE
+            const Text("Type", style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 10),
+            Row(
+              children: const [
+                _Chip(label: "Grass", color: Colors.green),
+                SizedBox(width: 10),
+                _Chip(label: "Poison", color: Colors.purple),
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            /// 🔹 WEAKNESSES
+            const Text("Weaknesses", style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: const [
+                _Chip(label: "Fire", color: Colors.orange),
+                _Chip(label: "Flying", color: Colors.grey),
+                _Chip(label: "Ice", color: Colors.lightBlue),
+                _Chip(label: "Psychic", color: Colors.pink),
+              ],
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+/// 🔹 SMALL INFO ITEM
+class _InfoItem extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const _InfoItem({required this.title, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title, style: const TextStyle(color: Colors.white70)),
+        const SizedBox(height: 4),
+        Text(value, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+      ],
+    );
+  }
+}
+
+/// 🔹 CHIP WIDGET
+class _Chip extends StatelessWidget {
+  final String label;
+  final Color color;
+
+  const _Chip({required this.label, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(label, style: const TextStyle(color: Colors.white)),
     );
   }
 }

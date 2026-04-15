@@ -1,7 +1,7 @@
+import 'package:flutter_dex/poke_details/data/models/pokemon_form/generation_viii.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'generation_ix.dart';
-import 'generation_viii.dart';
 
 part 'sprite_versions.g.dart';
 
