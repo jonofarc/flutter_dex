@@ -1,4 +1,5 @@
 import 'package:flutter_dex/shared/injectable_init.dart';
+import 'package:flutter_dex/shared/utils/log.dart';
 import 'package:flutter_dex/type/data/models/types.dart';
 import 'package:flutter_dex/type/domain/usecases/types_content.dart';
 
@@ -12,7 +13,7 @@ class TypeChart {
     return await typesData.fold(
       (error) {
         types = Types(count: 0, results: []);
-        print("Failed to load TypeChart: $error");
+        Log.debug("Failed to load TypeChart: $error");
         return false;
       },
       (data) async {
@@ -21,7 +22,7 @@ class TypeChart {
           final response = await getTypes.getTypeDataDetails(name: typeData.name);
           return response.fold(
             (error) {
-              print("Failed to load details for ${typeData.name}: $error");
+              Log.debug("Failed to load details for ${typeData.name}: $error");
               return false; // This specific call failed
             },
             (details) {

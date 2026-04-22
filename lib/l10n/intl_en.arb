@@ -1,23 +1,15 @@
 {
   "@@locale": "en",
-  "userName": "User Name",
-  "@userName": {
-    "description": "User Login text"
+  "height": "Height",
+  "@height": {
+    "description": "Pokemon height text"
   },
-  "password": "Password",
-  "@userLogin": {
-    "description": "Password text"
+  "category": "Category",
+  "@category": {
+    "description": "Pokemon category text"
   },
-  "login": "Login",
-  "@login": {
-    "description": "Login text"
-  },
-  "loginError": "Login failed. Please check your username and password and try again.",
-  "@loginError": {
-    "description": "Login error text"
-  },
-  "logout": "Logout",
-  "@logout": {
-    "description": "Logout error text"
+  "name": "Name",
+  "@name": {
+    "description": "Pokemon name text"
   }
 }

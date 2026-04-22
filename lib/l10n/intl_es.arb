@@ -1,0 +1,15 @@
+{
+  "@@locale": "es",
+  "height": "Altura",
+  "@height": {
+    "description": "Texto de la altura del Pokémon"
+  },
+  "category": "Categoría",
+  "@category": {
+    "description": "Texto de la categoría del Pokémon"
+  },
+  "name": "Nombre",
+  "@name": {
+    "description": "Texto del nombre del Pokémon"
+  }
+}

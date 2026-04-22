@@ -18,20 +18,17 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name =
-        (locale.countryCode?.isEmpty ?? false)
-            ? locale.languageCode
-            : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -44,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -55,42 +50,32 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `User Name`
-  String get userName {
+  /// `Height`
+  String get height {
     return Intl.message(
-      'User Name',
-      name: 'userName',
-      desc: 'User Login text',
+      'Height',
+      name: 'height',
+      desc: 'Pokemon height text',
       args: [],
     );
   }
 
-  /// `Password`
-  String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
-  }
-
-  /// `Login`
-  String get login {
-    return Intl.message('Login', name: 'login', desc: 'Login text', args: []);
-  }
-
-  /// `Login failed. Please check your username and password and try again.`
-  String get loginError {
+  /// `Category`
+  String get category {
     return Intl.message(
-      'Login failed. Please check your username and password and try again.',
-      name: 'loginError',
-      desc: 'Login error text',
+      'Category',
+      name: 'category',
+      desc: 'Pokemon category text',
       args: [],
     );
   }
 
-  /// `Logout`
-  String get logout {
+  /// `Name`
+  String get name {
     return Intl.message(
-      'Logout',
-      name: 'logout',
-      desc: 'Logout error text',
+      'Name',
+      name: 'name',
+      desc: 'Pokemon name text',
       args: [],
     );
   }
@@ -102,7 +87,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'es', countryCode: 'MX'),
+      Locale.fromSubtags(languageCode: 'es'),
     ];
   }
 

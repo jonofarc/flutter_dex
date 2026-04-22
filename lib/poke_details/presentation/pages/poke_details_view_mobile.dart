@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dex/helpers/l10n_extensions.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
 import 'package:flutter_dex/poke_details/domain/mappers/pokemon_form_mapper.dart';
@@ -19,6 +20,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = context.l10n;
     return Scaffold(
       appBar: AppBar(title: const Text('Dex View Selection')),
       body: SingleChildScrollView(
@@ -83,9 +85,9 @@ class PokeDetailsViewMobile extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      _InfoItem(title: "Height", value: "2' 04\""),
-                      _InfoItem(title: "Category", value: "Seed"),
+                    children: [
+                      _InfoItem(title: s.height, value: "2' 04\""),
+                      _InfoItem(title: s.category, value: "Seed"),
                     ],
                   ),
                   SizedBox(height: 12),

@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a es_MX locale. All the
+// This is a library that provides messages for a es locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,16 +18,12 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'es_MX';
+  String get localeName => 'es';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "login": MessageLookupByLibrary.simpleMessage("Inicio de sesión"),
-    "loginError": MessageLookupByLibrary.simpleMessage(
-      "Error de inicio de sesion. Por favor verifique su nombre de usuario y contraseña y vuelva a intentarlo.",
-    ),
-    "logout": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
-    "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
-    "userName": MessageLookupByLibrary.simpleMessage("Usuario"),
-  };
+        "category": MessageLookupByLibrary.simpleMessage("Categoría"),
+        "height": MessageLookupByLibrary.simpleMessage("Altura"),
+        "name": MessageLookupByLibrary.simpleMessage("Nombre")
+      };
 }

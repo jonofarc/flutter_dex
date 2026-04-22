@@ -3,6 +3,8 @@ import 'package:flutter_dex/dex_selection/presentation/pages/dex_selection_scree
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/shared/utils/constants.dart';
 import 'package:flutter_dex/shared/widget/widget_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +26,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       home: const MyHomePage(title: 'Flutter Dex home page'),
     );
   }
