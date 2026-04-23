@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon/pokemon.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
 import 'package:flutter_dex/poke_details/domain/usecases/poke_details_view_content.dart';
@@ -14,6 +15,8 @@ part 'poke_details_state.dart';
 class PokeDetailsBloc extends Bloc<PokeDetailsEvent, PokeDetailsState> {
   final String id;
   PokemonForm? pokemonForm;
+  PokemonDetailsSpecies? species;
+  Pokemon? pokemon;
 
   PokeDetailsBloc({required this.id}) : super(PokeDetailsInitialState(id: id)) {
     on<LoadPokeDetailsContent>(_onLoadPokeDetailsContent);
@@ -35,39 +38,52 @@ class PokeDetailsBloc extends Bloc<PokeDetailsEvent, PokeDetailsState> {
 
       final pokemonSpeciesData = await getPokeDetailsContent.getPokemonDetailsSpeciesData(id: id);
 
+      final pokemonData = await getPokeDetailsContent.getPokemonEntryData(id: id);
+
       pokedexData.fold(
         (error) => emit(PokeDetailsError(message: error.message)),
         (pokemonForm) {
           pokemonSpeciesData.fold(
             (error) => emit(PokeDetailsError(message: error.message)),
             (species) {
-              this.pokemonForm = pokemonForm;
+              pokemonData.fold(
+                (error) => emit(PokeDetailsError(message: error.message)),
+                (pokemon) {
+                  this.pokemonForm = pokemonForm;
+                  this.species = species;
+                  this.pokemon = pokemon;
 
-              final pokemonTypes = pokemonForm.types ?? [];
+                  final pokemonTypes = pokemonForm.types ?? [];
 
-              final weaknesses = pokemonTypes
-                  .map((typeEntry) {
-                    final typeName = typeEntry.type.name;
-                    return Utils.getWeaknessesByName(typeName);
-                  })
-                  .expand((list) => list)
-                  .toSet();
+                  final weaknesses = pokemonTypes
+                      .map((typeEntry) {
+                        final typeName = typeEntry.type.name;
+                        return Utils.getWeaknessesByName(typeName);
+                      })
+                      .expand((list) => list)
+                      .toSet();
 
-              final resistances = pokemonTypes
-                  .map((typeEntry) {
-                    final typeName = typeEntry.type.name;
-                    return Utils.getResistanceByName(typeName);
-                  })
-                  .expand((list) => list)
-                  .toSet();
+                  final resistances = pokemonTypes
+                      .map((typeEntry) {
+                        final typeName = typeEntry.type.name;
+                        return Utils.getResistanceByName(typeName);
+                      })
+                      .expand((list) => list)
+                      .toSet();
 
-              final finalWeaknesses = weaknesses.difference(resistances).toList();
+                  List<String> finalWeaknesses = weaknesses.difference(resistances).toList();
 
-              emit(PokeDetailsSuccess(
-                pokemonForm: pokemonForm,
-                pokemonDetailsSpecies: species,
-                weaknesses: finalWeaknesses,
-              ));
+                  pokemon = pokemon.copyWith(
+                    pokemonForm: pokemonForm,
+                    species: species,
+                    weaknesses: finalWeaknesses,
+                  );
+
+                  emit(PokeDetailsSuccess(
+                    pokemon: pokemon,
+                  ));
+                },
+              );
             },
           );
         },

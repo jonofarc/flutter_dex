@@ -1,22 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/helpers/l10n_extensions.dart';
-import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
-import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
+import 'package:flutter_dex/poke_details/data/models/pokemon/pokemon.dart';
 import 'package:flutter_dex/poke_details/domain/mappers/pokemon_form_mapper.dart';
 import 'package:flutter_dex/shared/utils/utils.dart';
 
 class PokeDetailsViewMobile extends StatelessWidget {
   const PokeDetailsViewMobile({
     super.key,
-    this.pokemonForm,
-    this.pokemonDetailsSpecies,
-    this.weaknesses = const [],
+    this.pokemon,
   });
 
-  final PokemonForm? pokemonForm;
-  final PokemonDetailsSpecies? pokemonDetailsSpecies;
-  final List<String> weaknesses;
+  final Pokemon? pokemon;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +35,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: pokemonForm?.imageUrl ?? "",
+                      imageUrl: pokemon?.pokemonForm?.imageUrl ?? "",
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -52,18 +47,18 @@ class PokeDetailsViewMobile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        Utils.capitalize(pokemonForm?.name ?? ""),
+                        Utils.capitalize(pokemon?.pokemonForm?.name ?? ""),
                         style: TextStyle(fontSize: 24),
                       ),
                       SizedBox(height: 12),
                       Text(
-                        pokemonDetailsSpecies?.flavorTextEntries?.first.flavorText ?? "",
+                        pokemon?.species?.flavorTextEntries?.first.flavorText ?? "",
                         style: TextStyle(fontSize: 14),
                       ),
                       SizedBox(height: 12),
                       Row(
                         children: [
-                          Text("Versions: "),
+                          Text(s.versions),
                           Icon(Icons.circle, color: Colors.blue, size: 14),
                           SizedBox(width: 8),
                           Icon(Icons.circle, color: Colors.red, size: 14),
@@ -86,16 +81,8 @@ class PokeDetailsViewMobile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _InfoItem(title: s.height, value: "2' 04\""),
-                      _InfoItem(title: s.category, value: "Seed"),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      _InfoItem(title: "Weight", value: "15.2 lbs"),
-                      _InfoItem(title: "Abilities", value: "Overgrow"),
+                      _InfoItem(title: s.height, value: pokemon?.heightFormatted ?? ""),
+                      _InfoItem(title: s.weight, value: pokemon?.weightFormatted ?? ""),
                     ],
                   ),
                   SizedBox(height: 12),
@@ -125,7 +112,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
             const Text("Type", style: TextStyle(fontSize: 16)),
             const SizedBox(height: 10),
             Row(
-              children: pokemonForm?.types?.map((typeEntry) {
+              children: pokemon?.pokemonForm?.types?.map((typeEntry) {
                     final typeName = typeEntry.type.name ?? "";
 
                     return Padding(
@@ -144,7 +131,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: weaknesses.map((weakness) {
+              children: (pokemon?.weaknesses ?? []).map((weakness) {
                 return _Chip(
                   label: weakness,
                   color: Utils.getTypeColor(weakness),

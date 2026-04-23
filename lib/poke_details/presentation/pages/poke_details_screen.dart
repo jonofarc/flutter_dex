@@ -24,11 +24,7 @@ class PokeDetailsScreen extends StatelessWidget {
       body: BlocBuilder<PokeDetailsBloc, PokeDetailsState>(
         builder: (blocContext, state) {
           if (state is PokeDetailsSuccess) {
-            return PokeDetailsViewMobile(
-              pokemonForm: state.pokemonForm,
-              pokemonDetailsSpecies: state.pokemonDetailsSpecies,
-              weaknesses: state.weaknesses,
-            );
+            return PokeDetailsViewMobile(pokemon: state.pokemon);
           } else if (state is PokeDetailsLoading) {
             return const LoadingWidget(width: double.infinity, height: double.infinity);
           } else if (state is PokeDetailsError) {

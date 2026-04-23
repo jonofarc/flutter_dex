@@ -17,13 +17,9 @@ class PokeDetailsLoading extends PokeDetailsState {
 }
 
 class PokeDetailsSuccess extends PokeDetailsState {
-  final PokemonForm pokemonForm;
-  final PokemonDetailsSpecies pokemonDetailsSpecies;
-  final List<String> weaknesses;
+  final Pokemon pokemon;
   const PokeDetailsSuccess({
-    required this.pokemonForm,
-    required this.pokemonDetailsSpecies,
-    required this.weaknesses,
+    required this.pokemon,
   });
 }
 

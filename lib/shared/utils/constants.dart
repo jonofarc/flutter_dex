@@ -7,9 +7,10 @@ const paddingDefault = 16.0;
 //login base url
 const pokeApiBaseUrl = "https://pokeapi.co/api/v2/";
 const regionsUrl = "region/";
-const pokemonUrl = "pokemon-form/";
-//pokemon-species/25 pikachu
-const pokemonSpecies = "pokemon-species/";
+const pokemonFormUrl = "pokemon-form/";
+const pokemonUrl = "pokemon/";
+//pokemon-species/25 -> pikachu
+const pokemonSpeciesUrl = "pokemon-species/";
 const typeUrl = "type/";
 
 //Error messages

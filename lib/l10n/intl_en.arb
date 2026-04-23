@@ -4,6 +4,10 @@
   "@height": {
     "description": "Pokemon height text"
   },
+  "weight": "Weight",
+  "@weight": {
+    "description": "Pokemon weight text"
+  },
   "category": "Category",
   "@category": {
     "description": "Pokemon category text"
@@ -11,5 +15,9 @@
   "name": "Name",
   "@name": {
     "description": "Pokemon name text"
+  },
+  "versions": "Versions:",
+  "@versions": {
+    "description": "Versions text"
   }
 }
