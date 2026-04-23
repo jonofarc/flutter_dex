@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/helpers/l10n_extensions.dart';
+import 'package:flutter_dex/helpers/string_extensions.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon/pokemon.dart';
 import 'package:flutter_dex/poke_details/domain/mappers/pokemon_form_mapper.dart';
 import 'package:flutter_dex/shared/utils/utils.dart';
@@ -178,7 +179,7 @@ class _Chip extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Text(label, style: const TextStyle(color: Colors.white)),
+      child: Text(label.capitalize(), style: const TextStyle(color: Colors.white)),
     );
   }
 }

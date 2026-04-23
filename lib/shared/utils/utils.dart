@@ -10,16 +10,66 @@ class Utils {
 
   static Color getTypeColor(String type) {
     switch (type.toLowerCase()) {
-      case "grass":
-        return Colors.green;
-      case "poison":
-        return Colors.purple;
+      case "normal":
+        return Colors.grey;
+
       case "fire":
-        return Colors.red;
+        return Colors.deepOrange;
+
       case "water":
         return Colors.blue;
+
       case "electric":
-        return Colors.yellow;
+        return Colors.amber;
+
+      case "grass":
+        return Colors.green;
+
+      case "ice":
+        return Colors.lightBlueAccent;
+
+      case "fighting":
+        return Colors.brown;
+
+      case "poison":
+        return Colors.purple;
+
+      case "ground":
+        return Colors.orangeAccent;
+
+      case "flying":
+        return Colors.indigoAccent;
+
+      case "psychic":
+        return Colors.pink;
+
+      case "bug":
+        return Colors.lightGreen;
+
+      case "rock":
+        return Colors.brown.shade600;
+
+      case "ghost":
+        return Colors.deepPurple;
+
+      case "dragon":
+        return Colors.indigo;
+
+      case "dark":
+        return Colors.black87;
+
+      case "steel":
+        return Colors.blueGrey;
+
+      case "fairy":
+        return Colors.pinkAccent;
+
+      case "stellar":
+        return Colors.tealAccent;
+
+      case "unknown":
+        return Colors.grey;
+
       default:
         return Colors.grey;
     }
