@@ -4,12 +4,14 @@ part 'bdsp.g.dart';
 
 @JsonSerializable()
 class BDSP {
-  final String? front_default;
-  final String? front_female;
+  @JsonKey(name: 'front_default')
+  final String? frontDefault;
+  @JsonKey(name: 'front_female')
+  final String? frontFemale;
 
   BDSP({
-    this.front_default,
-    this.front_female,
+    this.frontDefault,
+    this.frontFemale,
   });
 
   factory BDSP.fromJson(Map<String, dynamic> json) => _$BDSPFromJson(json);

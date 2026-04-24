@@ -4,12 +4,14 @@ part 'scarlet_violet.g.dart';
 
 @JsonSerializable()
 class ScarletViolet {
-  final String? front_default;
-  final String? front_female;
+  @JsonKey(name: 'front_default')
+  final String? frontDefault;
+  @JsonKey(name: 'front_female')
+  final String? frontFemale;
 
   ScarletViolet({
-    this.front_default,
-    this.front_female,
+    this.frontDefault,
+    this.frontFemale,
   });
 
   factory ScarletViolet.fromJson(Map<String, dynamic> json) => _$ScarletVioletFromJson(json);

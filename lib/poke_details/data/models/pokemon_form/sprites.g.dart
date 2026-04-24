@@ -7,27 +7,27 @@ part of 'sprites.dart';
 // **************************************************************************
 
 Sprites _$SpritesFromJson(Map<String, dynamic> json) => Sprites(
-      back_default: json['back_default'] as String?,
-      back_female: json['back_female'] as String?,
-      back_shiny: json['back_shiny'] as String?,
-      back_shiny_female: json['back_shiny_female'] as String?,
-      front_default: json['front_default'] as String?,
-      front_female: json['front_female'] as String?,
-      front_shiny: json['front_shiny'] as String?,
-      front_shiny_female: json['front_shiny_female'] as String?,
+      backDefault: json['back_default'] as String?,
+      backFemale: json['back_female'] as String?,
+      backShiny: json['back_shiny'] as String?,
+      backShinyFemale: json['back_shiny_female'] as String?,
+      frontDefault: json['front_default'] as String?,
+      frontFemale: json['front_female'] as String?,
+      frontShiny: json['front_shiny'] as String?,
+      frontShinyFemale: json['front_shiny_female'] as String?,
       versions: json['versions'] == null
           ? null
           : SpriteVersions.fromJson(json['versions'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SpritesToJson(Sprites instance) => <String, dynamic>{
-      'back_default': instance.back_default,
-      'back_female': instance.back_female,
-      'back_shiny': instance.back_shiny,
-      'back_shiny_female': instance.back_shiny_female,
-      'front_default': instance.front_default,
-      'front_female': instance.front_female,
-      'front_shiny': instance.front_shiny,
-      'front_shiny_female': instance.front_shiny_female,
+      'back_default': instance.backDefault,
+      'back_female': instance.backFemale,
+      'back_shiny': instance.backShiny,
+      'back_shiny_female': instance.backShinyFemale,
+      'front_default': instance.frontDefault,
+      'front_female': instance.frontFemale,
+      'front_shiny': instance.frontShiny,
+      'front_shiny_female': instance.frontShinyFemale,
       'versions': instance.versions?.toJson(),
     };
