@@ -48,7 +48,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        Utils.capitalize(pokemon?.pokemonForm?.name ?? ""),
+                        pokemon?.pokemonForm?.name?.capitalize() ?? "",
                         style: TextStyle(fontSize: 24),
                       ),
                       SizedBox(height: 12),
@@ -64,6 +64,22 @@ class PokeDetailsViewMobile extends StatelessWidget {
                           SizedBox(width: 8),
                           Icon(Icons.circle, color: Colors.red, size: 14),
                         ],
+                      ),
+                      SizedBox(height: 12),
+                      ElevatedButton(
+                        onPressed: () {
+                          Utils.playSoundStream(
+                              "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/25.ogg");
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(s.cry),
                       ),
                     ],
                   ),

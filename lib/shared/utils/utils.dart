@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/type/data/models/type_chart.dart';
+import 'package:just_audio/just_audio.dart';
+
+final AudioPlayer player = AudioPlayer();
 
 class Utils {
-  static String capitalize(String? text) {
-    if (text == null || text.isEmpty) return "";
-    return text[0].toUpperCase() + text.substring(1);
+  static Future<void> playSoundStream(String url) async {
+    player.stop();
+    await player.setUrl(url);
+    player.play();
   }
 
   static Color getTypeColor(String type) {

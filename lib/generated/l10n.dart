@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Weight`
+  String get weight {
+    return Intl.message(
+      'Weight',
+      name: 'weight',
+      desc: 'Pokemon weight text',
+      args: [],
+    );
+  }
+
   /// `Category`
   String get category {
     return Intl.message(
@@ -76,6 +86,36 @@ class S {
       'Name',
       name: 'name',
       desc: 'Pokemon name text',
+      args: [],
+    );
+  }
+
+  /// `Versions:`
+  String get versions {
+    return Intl.message(
+      'Versions:',
+      name: 'versions',
+      desc: 'Versions text',
+      args: [],
+    );
+  }
+
+  /// `Base Stats`
+  String get baseStats {
+    return Intl.message(
+      'Base Stats',
+      name: 'baseStats',
+      desc: 'Base Stats text',
+      args: [],
+    );
+  }
+
+  /// `Cry`
+  String get cry {
+    return Intl.message(
+      'Cry',
+      name: 'cry',
+      desc: 'Cry text',
       args: [],
     );
   }

@@ -23,5 +23,9 @@
   "baseStats": "Base Stats",
   "@baseStats": {
     "description": "Base Stats text"
+  },
+  "cry": "Cry",
+  "@cry": {
+    "description": "Cry text"
   }
 }
