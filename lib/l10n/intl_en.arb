@@ -19,5 +19,9 @@
   "versions": "Versions:",
   "@versions": {
     "description": "Versions text"
+  },
+  "baseStats": "Base Stats",
+  "@baseStats": {
+    "description": "Base Stats text"
   }
 }

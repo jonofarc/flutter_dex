@@ -101,13 +101,12 @@ class PokeDetailsViewMobile extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              height: 150,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.grey.shade400,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Center(child: Text("Stats Placeholder")),
+              child: Center(child: _buildPokemonStats(context)),
             ),
             const SizedBox(height: 20),
             const Text("Type", style: TextStyle(fontSize: 16)),
@@ -141,6 +140,83 @@ class PokeDetailsViewMobile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildStatColumn({
+    required String label,
+    required int value,
+    int maxValue = 255,
+  }) {
+    int numberOfBars = 15;
+    final filledBars = ((value * numberOfBars) / maxValue).round();
+
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8, left: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: List.generate(numberOfBars, (index) {
+                  final isFilled = index < filledBars;
+
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 1),
+                    height: 6,
+                    color: isFilled ? Colors.blue : Colors.grey[300],
+                  );
+                }).reversed.toList(),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            value.toString(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 10),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPokemonStats(BuildContext context) {
+    final s = context.l10n;
+    final stats = pokemon?.pokemonStats ?? [];
+
+    final statMap = pokemon?.mapStats() ?? {};
+
+    final maxStat = stats.isNotEmpty ? stats.map((e) => e.baseStat ?? 0).reduce((a, b) => a > b ? a : b) : 100;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[400],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(s.baseStats),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: stats.map((s) {
+              final name = s.stat?.name ?? '';
+
+              return _buildStatColumn(
+                label: name.capitalize(),
+                value: statMap[name] ?? 0,
+                // maxValue: maxStat,
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }

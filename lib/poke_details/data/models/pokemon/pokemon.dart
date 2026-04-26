@@ -1,3 +1,4 @@
+import 'package:flutter_dex/poke_details/data/models/pokemon/pokemon_stat.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -27,6 +28,9 @@ class Pokemon {
   @JsonKey(name: 'weaknesses', defaultValue: [])
   final List<String> weaknesses;
 
+  @JsonKey(name: 'stats')
+  final List<PokemonStat>? pokemonStats;
+
   Pokemon({
     this.height,
     this.weight,
@@ -34,6 +38,7 @@ class Pokemon {
     this.isDefault,
     this.pokemonForm,
     this.species,
+    this.pokemonStats,
     this.weaknesses = const [],
   });
 
@@ -45,6 +50,7 @@ class Pokemon {
     PokemonForm? pokemonForm,
     PokemonDetailsSpecies? species,
     List<String>? weaknesses,
+    List<PokemonStat>? pokemonStats,
   }) {
     return Pokemon(
       height: height ?? this.height,
@@ -54,6 +60,7 @@ class Pokemon {
       pokemonForm: pokemonForm ?? this.pokemonForm,
       species: species ?? this.species,
       weaknesses: weaknesses ?? this.weaknesses,
+      pokemonStats: pokemonStats ?? this.pokemonStats,
     );
   }
 
@@ -112,6 +119,18 @@ class Pokemon {
       final grams = weightInGrams;
       return '$grams g ($lbsStr lbs)';
     }
+  }
+
+  Map<String, int> mapStats() {
+    final map = <String, int>{};
+    if (pokemonStats != null) {
+      for (var s in pokemonStats!) {
+        final name = s.stat?.name ?? '';
+        map[name] = s.baseStat ?? 0;
+      }
+    }
+
+    return map;
   }
 
   factory Pokemon.fromJson(Map<String, dynamic> json) => _$PokemonFromJson(json);
