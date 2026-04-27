@@ -68,8 +68,9 @@ class PokeDetailsViewMobile extends StatelessWidget {
                       SizedBox(height: 12),
                       ElevatedButton(
                         onPressed: () {
-                          Utils.playSoundStream(
-                              "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/25.ogg");
+                          WidgetsBinding.instance.addPostFrameCallback((_) async {
+                            Utils.playSoundStream(pokemon?.cries?.legacy ?? pokemon?.cries?.latest);
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor,

@@ -6,10 +6,16 @@ import 'package:just_audio/just_audio.dart';
 final AudioPlayer player = AudioPlayer();
 
 class Utils {
-  static Future<void> playSoundStream(String url) async {
-    player.stop();
-    await player.setUrl(url);
-    player.play();
+  static Future<void> playSoundStream(String? url) async {
+    if (url != null) {
+      try {
+        await player.stop();
+        await player.setUrl(url);
+        await player.play();
+      } catch (e) {
+        debugPrint("Audio error: $e");
+      }
+    }
   }
 
   static Color getTypeColor(String type) {

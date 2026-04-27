@@ -25,6 +25,9 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) => Pokemon(
               ?.map((e) => e as String)
               .toList() ??
           [],
+      cries: json['cries'] == null
+          ? null
+          : Cries.fromJson(json['cries'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PokemonToJson(Pokemon instance) => <String, dynamic>{
@@ -36,4 +39,5 @@ Map<String, dynamic> _$PokemonToJson(Pokemon instance) => <String, dynamic>{
       'species': instance.species,
       'weaknesses': instance.weaknesses,
       'stats': instance.pokemonStats,
+      'cries': instance.cries,
     };

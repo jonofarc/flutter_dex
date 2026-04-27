@@ -1,3 +1,4 @@
+import 'package:flutter_dex/poke_details/data/models/pokemon/cries.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon/pokemon_stat.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_form/pokemon_form.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_species/pokemon_details_species.dart';
@@ -31,6 +32,9 @@ class Pokemon {
   @JsonKey(name: 'stats')
   final List<PokemonStat>? pokemonStats;
 
+  @JsonKey(name: 'cries')
+  final Cries? cries;
+
   Pokemon({
     this.height,
     this.weight,
@@ -40,6 +44,7 @@ class Pokemon {
     this.species,
     this.pokemonStats,
     this.weaknesses = const [],
+    this.cries,
   });
 
   Pokemon copyWith({
@@ -51,6 +56,7 @@ class Pokemon {
     PokemonDetailsSpecies? species,
     List<String>? weaknesses,
     List<PokemonStat>? pokemonStats,
+    Cries? cries,
   }) {
     return Pokemon(
       height: height ?? this.height,
@@ -61,6 +67,7 @@ class Pokemon {
       species: species ?? this.species,
       weaknesses: weaknesses ?? this.weaknesses,
       pokemonStats: pokemonStats ?? this.pokemonStats,
+      cries: cries ?? this.cries,
     );
   }
 
