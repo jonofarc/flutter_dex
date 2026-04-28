@@ -7,8 +7,8 @@ part of 'cries.dart';
 // **************************************************************************
 
 Cries _$CriesFromJson(Map<String, dynamic> json) => Cries(
-      latest: json['latest'] as String,
-      legacy: json['legacy'] as String,
+      latest: json['latest'] as String?,
+      legacy: json['legacy'] as String?,
     );
 
 Map<String, dynamic> _$CriesToJson(Cries instance) => <String, dynamic>{

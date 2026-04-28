@@ -4,8 +4,8 @@ part 'cries.g.dart';
 
 @JsonSerializable()
 class Cries {
-  final String latest;
-  final String legacy;
+  final String? latest;
+  final String? legacy;
 
   const Cries({
     required this.latest,

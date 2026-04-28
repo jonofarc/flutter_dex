@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
+import 'package:flutter_dex/shared/utils/log.dart';
 import 'package:flutter_dex/type/data/models/type_chart.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -13,7 +14,7 @@ class Utils {
         await player.setUrl(url);
         await player.play();
       } catch (e) {
-        debugPrint("Audio error: $e");
+        Log.error("playSoundStream  with url $url error: $e");
       }
     }
   }
