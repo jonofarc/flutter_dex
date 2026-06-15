@@ -21,21 +21,23 @@ class PokeDetailsScreen extends StatelessWidget {
 
   Widget _content(BuildContext buildContext) {
     return Scaffold(
-      body: BlocBuilder<PokeDetailsBloc, PokeDetailsState>(
-        builder: (blocContext, state) {
-          if (state is PokeDetailsSuccess) {
-            return PokeDetailsViewMobile(pokemon: state.pokemon);
-          } else if (state is PokeDetailsLoading) {
-            return const LoadingWidget(width: double.infinity, height: double.infinity);
-          } else if (state is PokeDetailsError) {
-            return const PokeDetailsViewMobile();
-          } else if (state is PokeDetailsInitialState) {
-            _fetchContent(blocContext);
-          } else {
-            return const PokeDetailsViewMobile();
-          }
-          return Container();
-        },
+      body: SafeArea(
+        child: BlocBuilder<PokeDetailsBloc, PokeDetailsState>(
+          builder: (blocContext, state) {
+            if (state is PokeDetailsSuccess) {
+              return PokeDetailsViewMobile(pokemon: state.pokemon);
+            } else if (state is PokeDetailsLoading) {
+              return const LoadingWidget(width: double.infinity, height: double.infinity);
+            } else if (state is PokeDetailsError) {
+              return const PokeDetailsViewMobile();
+            } else if (state is PokeDetailsInitialState) {
+              _fetchContent(blocContext);
+            } else {
+              return const PokeDetailsViewMobile();
+            }
+            return Container();
+          },
+        ),
       ),
     );
   }

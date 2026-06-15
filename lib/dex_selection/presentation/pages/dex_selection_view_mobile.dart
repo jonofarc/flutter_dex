@@ -5,12 +5,11 @@ import 'package:flutter_dex/dex_view/presentation/pages/dex_view_screen.dart';
 
 class DexSelectionViewMobile extends StatelessWidget {
   const DexSelectionViewMobile({
-    super.key, this.regions = const Regions(count: 0, results: []),
+    super.key,
+    this.regions = const Regions(count: 0, results: []),
   });
 
   final Regions regions;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,6 @@ class DexSelectionViewMobile extends StatelessWidget {
     );
   }
 
-
   _navigateToRegion({required BuildContext context, required Region region}) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.of(context).push(
@@ -49,5 +47,4 @@ class DexSelectionViewMobile extends StatelessWidget {
       );
     });
   }
-
 }

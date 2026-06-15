@@ -53,17 +53,9 @@ class PokeDetailsViewMobile extends StatelessWidget {
                       ),
                       SizedBox(height: 12),
                       Text(
-                        pokemon?.species?.flavorTextEntries?.first.flavorText ?? "",
+                        pokemon?.species?.getFlavorTextEntryByLanguage("en")?.flavorText?.cleanString() ?? "",
+                        // pokemon?.species?.flavorTextEntries?.first.flavorText?.cleanString() ?? "",
                         style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Text(s.versions),
-                          Icon(Icons.circle, color: Colors.blue, size: 14),
-                          SizedBox(width: 8),
-                          Icon(Icons.circle, color: Colors.red, size: 14),
-                        ],
                       ),
                       SizedBox(height: 12),
                       ElevatedButton(

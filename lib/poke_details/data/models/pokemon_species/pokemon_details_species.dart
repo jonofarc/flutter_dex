@@ -15,4 +15,16 @@ class PokemonDetailsSpecies {
   factory PokemonDetailsSpecies.fromJson(Map<String, dynamic> json) => _$PokemonDetailsSpeciesFromJson(json);
 
   Map<String, dynamic> toJson() => _$PokemonDetailsSpeciesToJson(this);
+
+  FlavorTextEntry? getFlavorTextEntryByLanguage(String? languageName) {
+    if (flavorTextEntries != null) {
+      for (final flavorTextEntry in flavorTextEntries!) {
+        if (flavorTextEntry.language?.name == languageName) {
+          return flavorTextEntry;
+        }
+      }
+    }
+
+    return null;
+  }
 }
