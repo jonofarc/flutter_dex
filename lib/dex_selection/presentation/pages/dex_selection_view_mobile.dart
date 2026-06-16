@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dex/dex_selection/data/models/region.dart';
 import 'package:flutter_dex/dex_selection/data/models/regions.dart';
 import 'package:flutter_dex/dex_view/presentation/pages/dex_view_screen.dart';
+import 'package:flutter_dex/helpers/string_extensions.dart';
 
 class DexSelectionViewMobile extends StatelessWidget {
   const DexSelectionViewMobile({
@@ -25,9 +26,60 @@ class DexSelectionViewMobile extends StatelessWidget {
             final region = regions.results[index];
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: ElevatedButton(
-                onPressed: () => _navigateToRegion(context: context, region: region),
-                child: Text(region.name),
+              child: GestureDetector(
+                onTap: () => _navigateToRegion(context: context, region: region),
+                child: Card(
+                  elevation: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: Image.asset(
+                            'assets/img/PokeRegions/${region.name.capitalize()}.jpg',
+                            fit: BoxFit.fitWidth,
+                            errorBuilder: (context, error, stackTrace) => const Icon(Icons.error),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Text(
+                              region.name.capitalize(),
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.5,
+                                foreground: Paint()
+                                  ..style = PaintingStyle.stroke
+                                  ..strokeWidth = 3
+                                  ..color = Colors.black,
+                              ),
+                            ),
+                            Text(
+                              region.name.capitalize(),
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.yellow,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             );
           },

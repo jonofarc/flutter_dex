@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/dex_view/data/models/pokedex/pokemon_entry.dart';
 import 'package:flutter_dex/dex_view/domain/mappers/pokemon_entry_mapper.dart';
+import 'package:flutter_dex/helpers/l10n_extensions.dart';
 import 'package:flutter_dex/poke_details/presentation/pages/poke_details_screen.dart';
 
 class DexViewViewMobile extends StatelessWidget {
@@ -11,38 +12,58 @@ class DexViewViewMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('Dex View Selection')),
+      appBar: AppBar(title: Text(s.dexViewScreenTitle)),
       body: pokemonEntries.isEmpty
-          ? const Center(
+          ? Center(
               child: Text(
-                'No records found',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+                s.noRecordsFound,
+                style: const TextStyle(fontSize: 18, color: Colors.grey),
               ),
             )
-          : ListView.builder(
+          : GridView.builder(
+              padding: const EdgeInsets.all(16),
               itemCount: pokemonEntries.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 120,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 0.8,
+              ),
               itemBuilder: (context, index) {
                 final entry = pokemonEntries[index];
                 final imageUrl = entry.imageUrl;
+
                 return GestureDetector(
                   onTap: () => _pokemonTapped(
                     context: context,
                     entry: entry,
                   ),
                   child: Card(
-                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     elevation: 3,
-                    child: ListTile(
-                      leading: CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        placeholder: (context, url) => const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            entry.pokemonSpecies?.name ?? s.unknown,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                      title: Text(entry.pokemonSpecies?.name ?? 'Unknown'),
                     ),
                   ),
                 );

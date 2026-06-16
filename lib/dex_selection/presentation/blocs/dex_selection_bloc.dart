@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dex/dex_selection/data/models/region.dart';
 import 'package:flutter_dex/dex_selection/data/models/regions.dart';
 import 'package:flutter_dex/dex_selection/domain/usecases/get_dex_selection_content.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
@@ -30,10 +31,26 @@ class DexSelectionBloc extends Bloc<DexSelectionEvent, DexSelectionState> {
 
       result.fold((error) {
         emit(DexSelectionError(message: error.message));
-      }, (regions) => emit(DexSelectionSuccess(regions: regions)));
+      }, (regions) {
+        regions = _removeRegionByName(
+            regions: regions,
+            regionToRemoveNane: "Orre"); //Remove Orre Region as it is empty for all intense and purposes
+        emit(DexSelectionSuccess(regions: regions));
+      });
     } catch (e) {
       Log.debug(e.toString());
       emit(DexSelectionError(message: e.toString()));
     }
+  }
+
+  Regions _removeRegionByName({required Regions regions, required String regionToRemoveNane}) {
+    Regions filteredRegions = regions;
+    for (Region region in filteredRegions.results) {
+      if (region.name.toLowerCase().trim() == regionToRemoveNane.toLowerCase().trim()) {
+        filteredRegions.results.remove(region);
+      }
+    }
+
+    return filteredRegions;
   }
 }

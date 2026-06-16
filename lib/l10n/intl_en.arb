@@ -27,5 +27,17 @@
   "cry": "Cry",
   "@cry": {
     "description": "Cry text"
+  },
+  "noRecordsFound": "No Records Found",
+  "@noRecordsFound": {
+    "description": "No Records found text"
+  },
+  "dexViewScreenTitle": "Dex View Selection",
+  "@dexViewScreenTitle": {
+    "description": "Dex View selection title"
+  },
+  "unknown": "Unknown",
+  "@unknown": {
+    "description": "No species text Found"
   }
 }
