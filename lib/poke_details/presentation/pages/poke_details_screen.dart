@@ -5,8 +5,8 @@ import 'package:flutter_dex/poke_details/presentation/pages/poke_details_view_mo
 import 'package:flutter_dex/shared/widget/loading_widget.dart';
 
 class PokeDetailsScreen extends StatelessWidget {
-  String id;
-  PokeDetailsScreen({
+  final String id;
+  const PokeDetailsScreen({
     super.key,
     required this.id,
   });

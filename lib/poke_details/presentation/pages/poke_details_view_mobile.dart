@@ -5,6 +5,8 @@ import 'package:flutter_dex/helpers/string_extensions.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon/pokemon.dart';
 import 'package:flutter_dex/poke_details/domain/mappers/pokemon_form_mapper.dart';
 import 'package:flutter_dex/shared/utils/utils.dart';
+import 'package:flutter_dex/shared/widget/dex_app_bar.dart';
+import 'package:flutter_dex/shared/widget/dex_background.dart';
 
 class PokeDetailsViewMobile extends StatelessWidget {
   const PokeDetailsViewMobile({
@@ -18,136 +20,146 @@ class PokeDetailsViewMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('Dex View Selection')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 250,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl: pokemon?.pokemonForm?.imageUrl ?? "",
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        pokemon?.pokemonForm?.name?.capitalize() ?? "",
-                        style: TextStyle(fontSize: 24),
-                      ),
-                      SizedBox(height: 12),
-                      Text(
-                        pokemon?.species?.getFlavorTextEntryByLanguage("en")?.flavorText?.cleanString() ?? "",
-                        // pokemon?.species?.flavorTextEntries?.first.flavorText?.cleanString() ?? "",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      SizedBox(height: 12),
-                      ElevatedButton(
-                        onPressed: () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) async {
-                            Utils.playSoundStream(pokemon?.cries?.legacy ?? pokemon?.cries?.latest);
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).primaryColor,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: Text(s.cry),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade400,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
+      appBar: DexAppBar(
+        title: "Details",
+      ),
+      body: DexBackground(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _InfoItem(title: s.height, value: pokemon?.heightFormatted ?? ""),
-                      _InfoItem(title: s.weight, value: pokemon?.weightFormatted ?? ""),
-                    ],
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: pokemon?.pokemonForm?.imageUrl ?? "",
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
-                  SizedBox(height: 12),
-                  Row(
-                    children: const [
-                      Text("Gender"),
-                      SizedBox(width: 8),
-                      Icon(Icons.male),
-                      SizedBox(width: 4),
-                      Icon(Icons.female),
-                    ],
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 1,
+                    child: Card(
+                      margin: const EdgeInsets.all(0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              pokemon?.pokemonForm?.name?.capitalize() ?? "",
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            SizedBox(height: 12),
+                            Text(
+                              pokemon?.species?.getFlavorTextEntryByLanguage("en")?.flavorText?.cleanString() ?? "",
+                              // pokemon?.species?.flavorTextEntries?.first.flavorText?.cleanString() ?? "",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            SizedBox(height: 12),
+                            ElevatedButton(
+                              onPressed: () {
+                                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                  Utils.playSoundStream(pokemon?.cries?.legacy ?? pokemon?.cries?.latest);
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context).primaryColor,
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: Text(s.cry),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-                borderRadius: BorderRadius.circular(12),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade400,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _InfoItem(title: s.height, value: pokemon?.heightFormatted ?? ""),
+                        _InfoItem(title: s.weight, value: pokemon?.weightFormatted ?? ""),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    Row(
+                      children: const [
+                        Text("Gender"),
+                        SizedBox(width: 8),
+                        Icon(Icons.male),
+                        SizedBox(width: 4),
+                        Icon(Icons.female),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              child: Center(child: _buildPokemonStats(context)),
-            ),
-            const SizedBox(height: 20),
-            const Text("Type", style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 10),
-            Row(
-              children: pokemon?.pokemonForm?.types?.map((typeEntry) {
-                    final typeName = typeEntry.type.name ?? "";
+              const SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade400,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(child: _buildPokemonStats(context)),
+              ),
+              const SizedBox(height: 20),
+              const Text("Type", style: TextStyle(fontSize: 16)),
+              const SizedBox(height: 10),
+              Row(
+                children: pokemon?.pokemonForm?.types?.map((typeEntry) {
+                      final typeName = typeEntry.type.name ?? "";
 
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: _Chip(
-                        label: typeName,
-                        color: Utils.getTypeColor(typeName),
-                      ),
-                    );
-                  }).toList() ??
-                  [],
-            ),
-            const SizedBox(height: 20),
-            const Text("Weaknesses", style: TextStyle(fontSize: 16)),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: (pokemon?.weaknesses ?? []).map((weakness) {
-                return _Chip(
-                  label: weakness,
-                  color: Utils.getTypeColor(weakness),
-                );
-              }).toList(),
-            ),
-          ],
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: _Chip(
+                          label: typeName,
+                          color: Utils.getTypeColor(typeName),
+                        ),
+                      );
+                    }).toList() ??
+                    [],
+              ),
+              const SizedBox(height: 20),
+              const Text("Weaknesses", style: TextStyle(fontSize: 16)),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: (pokemon?.weaknesses ?? []).map((weakness) {
+                  return _Chip(
+                    label: weakness,
+                    color: Utils.getTypeColor(weakness),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );

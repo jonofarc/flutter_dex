@@ -19,22 +19,23 @@ class DexSelectionScreen extends StatelessWidget {
 
   Widget _content(BuildContext buildContext) {
     return Scaffold(
-      body: BlocBuilder<DexSelectionBloc, DexSelectionState>(
-        builder: (blocContext, state) {
-          if (state is DexSelectionSuccess) {
-            return DexSelectionViewMobile(regions: state.regions);
-          } else if (state is DexSelectionLoading) {
-            return const LoadingWidget(
-                width: double.infinity, height: double.infinity);
-          } else if (state is DexSelectionError) {
-            return const DexSelectionViewMobile();
-          } else if (state is DexSelectionInitialState) {
-            _fetchContent(blocContext);
-          } else {
-            return const DexSelectionViewMobile();
-          }
-          return Container();
-        },
+      body: SafeArea(
+        child: BlocBuilder<DexSelectionBloc, DexSelectionState>(
+          builder: (blocContext, state) {
+            if (state is DexSelectionSuccess) {
+              return DexSelectionViewMobile(regions: state.regions);
+            } else if (state is DexSelectionLoading) {
+              return const LoadingWidget(width: double.infinity, height: double.infinity);
+            } else if (state is DexSelectionError) {
+              return const DexSelectionViewMobile();
+            } else if (state is DexSelectionInitialState) {
+              _fetchContent(blocContext);
+            } else {
+              return const DexSelectionViewMobile();
+            }
+            return Container();
+          },
+        ),
       ),
     );
   }

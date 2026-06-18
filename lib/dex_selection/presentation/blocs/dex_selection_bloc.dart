@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dex/dex_selection/data/models/region.dart';
 import 'package:flutter_dex/dex_selection/data/models/regions.dart';
 import 'package:flutter_dex/dex_selection/domain/usecases/get_dex_selection_content.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
@@ -34,7 +33,7 @@ class DexSelectionBloc extends Bloc<DexSelectionEvent, DexSelectionState> {
       }, (regions) {
         regions = _removeRegionByName(
             regions: regions,
-            regionToRemoveNane: "Orre"); //Remove Orre Region as it is empty for all intense and purposes
+            regionToRemoveName: "Orre"); //Remove Orre Region as it is empty for all intense and purposes
         emit(DexSelectionSuccess(regions: regions));
       });
     } catch (e) {
@@ -43,14 +42,14 @@ class DexSelectionBloc extends Bloc<DexSelectionEvent, DexSelectionState> {
     }
   }
 
-  Regions _removeRegionByName({required Regions regions, required String regionToRemoveNane}) {
-    Regions filteredRegions = regions;
-    for (Region region in filteredRegions.results) {
-      if (region.name.toLowerCase().trim() == regionToRemoveNane.toLowerCase().trim()) {
-        filteredRegions.results.remove(region);
-      }
-    }
+  Regions _removeRegionByName({
+    required Regions regions,
+    required String regionToRemoveName,
+  }) {
+    regions.results.removeWhere(
+      (region) => region.name.toLowerCase().trim() == regionToRemoveName.toLowerCase().trim(),
+    );
 
-    return filteredRegions;
+    return regions;
   }
 }

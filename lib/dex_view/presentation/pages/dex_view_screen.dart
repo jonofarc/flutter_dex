@@ -6,8 +6,8 @@ import 'package:flutter_dex/dex_view/presentation/pages/dex_view_view_mobile.dar
 import 'package:flutter_dex/shared/widget/loading_widget.dart';
 
 class DexViewScreen extends StatelessWidget {
-  Region region;
-  DexViewScreen({
+  final Region region;
+  const DexViewScreen({
     super.key,
     required this.region,
   });
@@ -22,23 +22,25 @@ class DexViewScreen extends StatelessWidget {
 
   Widget _content(BuildContext buildContext) {
     return Scaffold(
-      body: BlocBuilder<DexViewBloc, DexViewState>(
-        builder: (blocContext, state) {
-          if (state is DexViewSuccess) {
-            return DexViewViewMobile(
-              pokemonEntries: state.pokemonEntries ?? [],
-            );
-          } else if (state is DexViewLoading) {
-            return const LoadingWidget(width: double.infinity, height: double.infinity);
-          } else if (state is DexViewError) {
-            return const DexViewViewMobile();
-          } else if (state is DexViewInitialState) {
-            _fetchContent(blocContext);
-          } else {
-            return const DexViewViewMobile();
-          }
-          return DexViewViewMobile();
-        },
+      body: SafeArea(
+        child: BlocBuilder<DexViewBloc, DexViewState>(
+          builder: (blocContext, state) {
+            if (state is DexViewSuccess) {
+              return DexViewViewMobile(
+                pokemonEntries: state.pokemonEntries ?? [],
+              );
+            } else if (state is DexViewLoading) {
+              return const LoadingWidget(width: double.infinity, height: double.infinity);
+            } else if (state is DexViewError) {
+              return const DexViewViewMobile();
+            } else if (state is DexViewInitialState) {
+              _fetchContent(blocContext);
+            } else {
+              return const DexViewViewMobile();
+            }
+            return DexViewViewMobile();
+          },
+        ),
       ),
     );
   }
