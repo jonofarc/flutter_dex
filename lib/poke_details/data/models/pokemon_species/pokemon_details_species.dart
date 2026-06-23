@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dex/helpers/string_extensions.dart';
 import 'package:flutter_dex/poke_details/data/models/pokemon_species/flavor_text_entry.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -20,6 +21,14 @@ class PokemonDetailsSpecies {
   factory PokemonDetailsSpecies.fromJson(Map<String, dynamic> json) => _$PokemonDetailsSpeciesFromJson(json);
 
   Map<String, dynamic> toJson() => _$PokemonDetailsSpeciesToJson(this);
+
+  //automatically retrieve the flavor text based on current locale
+  String getFlavorTextEntry(BuildContext context) {
+    return getFlavorTextEntryByLanguage(
+          Localizations.localeOf(context).languageCode,
+        )?.flavorText?.cleanString() ??
+        "";
+  }
 
   FlavorTextEntry? getFlavorTextEntryByLanguage(String? languageName) {
     if (flavorTextEntries != null) {

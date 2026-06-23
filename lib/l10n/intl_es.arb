@@ -64,5 +64,95 @@
   "type": "Tipo",
   "@type": {
     "description": "Pokemon type label"
+  },
+
+  "typeNormal": "Normal",
+  "@typeNormal": {
+    "description": "Pokemon type: Normal"
+  },
+
+  "typeFire": "Fuego",
+  "@typeFire": {
+    "description": "Pokemon type: Fire"
+  },
+
+  "typeWater": "Agua",
+  "@typeWater": {
+    "description": "Pokemon type: Water"
+  },
+
+  "typeElectric": "Eléctrico",
+  "@typeElectric": {
+    "description": "Pokemon type: Electric"
+  },
+
+  "typeGrass": "Planta",
+  "@typeGrass": {
+    "description": "Pokemon type: Grass"
+  },
+
+  "typeIce": "Hielo",
+  "@typeIce": {
+    "description": "Pokemon type: Ice"
+  },
+
+  "typeFighting": "Lucha",
+  "@typeFighting": {
+    "description": "Pokemon type: Fighting"
+  },
+
+  "typePoison": "Veneno",
+  "@typePoison": {
+    "description": "Pokemon type: Poison"
+  },
+
+  "typeGround": "Tierra",
+  "@typeGround": {
+    "description": "Pokemon type: Ground"
+  },
+
+  "typeFlying": "Volador",
+  "@typeFlying": {
+    "description": "Pokemon type: Flying"
+  },
+
+  "typePsychic": "Psíquico",
+  "@typePsychic": {
+    "description": "Pokemon type: Psychic"
+  },
+
+  "typeBug": "Bicho",
+  "@typeBug": {
+    "description": "Pokemon type: Bug"
+  },
+
+  "typeRock": "Roca",
+  "@typeRock": {
+    "description": "Pokemon type: Rock"
+  },
+
+  "typeGhost": "Fantasma",
+  "@typeGhost": {
+    "description": "Pokemon type: Ghost"
+  },
+
+  "typeDragon": "Dragón",
+  "@typeDragon": {
+    "description": "Pokemon type: Dragon"
+  },
+
+  "typeDark": "Siniestro",
+  "@typeDark": {
+    "description": "Pokemon type: Dark"
+  },
+
+  "typeSteel": "Acero",
+  "@typeSteel": {
+    "description": "Pokemon type: Steel"
+  },
+
+  "typeFairy": "Hada",
+  "@typeFairy": {
+    "description": "Pokemon type: Fairy"
   }
 }

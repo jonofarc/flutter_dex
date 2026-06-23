@@ -64,5 +64,95 @@
   "type": "Type",
   "@type": {
     "description": "Pokemon type label"
+  },
+
+  "typeNormal": "Normal",
+  "@typeNormal": {
+    "description": "Pokemon type: Normal"
+  },
+
+  "typeFire": "Fire",
+  "@typeFire": {
+    "description": "Pokemon type: Fire"
+  },
+
+  "typeWater": "Water",
+  "@typeWater": {
+    "description": "Pokemon type: Water"
+  },
+
+  "typeElectric": "Electric",
+  "@typeElectric": {
+    "description": "Pokemon type: Electric"
+  },
+
+  "typeGrass": "Grass",
+  "@typeGrass": {
+    "description": "Pokemon type: Grass"
+  },
+
+  "typeIce": "Ice",
+  "@typeIce": {
+    "description": "Pokemon type: Ice"
+  },
+
+  "typeFighting": "Fighting",
+  "@typeFighting": {
+    "description": "Pokemon type: Fighting"
+  },
+
+  "typePoison": "Poison",
+  "@typePoison": {
+    "description": "Pokemon type: Poison"
+  },
+
+  "typeGround": "Ground",
+  "@typeGround": {
+    "description": "Pokemon type: Ground"
+  },
+
+  "typeFlying": "Flying",
+  "@typeFlying": {
+    "description": "Pokemon type: Flying"
+  },
+
+  "typePsychic": "Psychic",
+  "@typePsychic": {
+    "description": "Pokemon type: Psychic"
+  },
+
+  "typeBug": "Bug",
+  "@typeBug": {
+    "description": "Pokemon type: Bug"
+  },
+
+  "typeRock": "Rock",
+  "@typeRock": {
+    "description": "Pokemon type: Rock"
+  },
+
+  "typeGhost": "Ghost",
+  "@typeGhost": {
+    "description": "Pokemon type: Ghost"
+  },
+
+  "typeDragon": "Dragon",
+  "@typeDragon": {
+    "description": "Pokemon type: Dragon"
+  },
+
+  "typeDark": "Dark",
+  "@typeDark": {
+    "description": "Pokemon type: Dark"
+  },
+
+  "typeSteel": "Steel",
+  "@typeSteel": {
+    "description": "Pokemon type: Steel"
+  },
+
+  "typeFairy": "Fairy",
+  "@typeFairy": {
+    "description": "Pokemon type: Fairy"
   }
 }

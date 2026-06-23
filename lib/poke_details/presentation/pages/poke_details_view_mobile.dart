@@ -36,7 +36,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: containerWidth.clamp(0, 200),
+                    width: containerWidth.clamp(0, 120),
                     decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(12),
@@ -54,10 +54,10 @@ class PokeDetailsViewMobile extends StatelessWidget {
                       margin: const EdgeInsets.all(0),
                       child: Container(
                         constraints: BoxConstraints(
-                          minHeight: containerWidth.clamp(0, 200),
+                          minHeight: containerWidth.clamp(0, 120),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(4),
+                          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -70,9 +70,10 @@ class PokeDetailsViewMobile extends StatelessWidget {
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                pokemon?.species?.getFlavorTextEntryByLanguage("en")?.flavorText?.cleanString() ?? "",
+                                pokemon?.species?.getFlavorTextEntry(context) ?? "",
+                                textAlign: TextAlign.justify,
                                 style: const TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   color: Colors.white,
                                 ),
                               ),
@@ -95,10 +96,14 @@ class PokeDetailsViewMobile extends StatelessWidget {
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
+                                    side: const BorderSide(
+                                      color: Colors.white,
+                                      width: 1,
+                                    ),
                                   ),
                                 ),
                                 child: Text(s.cry),
-                              ),
+                              )
                             ],
                           ),
                         ),
@@ -159,7 +164,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
               const SizedBox(height: 10),
               Row(
                 children: pokemon?.pokemonForm?.types?.map((typeEntry) {
-                      final typeName = typeEntry.type.name ?? "";
+                      final typeName = typeEntry.type.getTypeText(s);
 
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
@@ -301,8 +306,15 @@ class _Chip extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: Colors.white,
+          width: 1,
+        ),
       ),
-      child: Text(label.capitalize(), style: const TextStyle(color: Colors.white)),
+      child: Text(
+        label.capitalize(),
+        style: const TextStyle(color: Colors.white),
+      ),
     );
   }
 }
