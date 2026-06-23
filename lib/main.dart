@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dex/dex_selection/presentation/pages/dex_selection_screen.dart';
 import 'package:flutter_dex/shared/injectable_init.dart';
 import 'package:flutter_dex/shared/utils/constants.dart';
-import 'package:flutter_dex/shared/widget/widget_utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -51,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WidgetUtils().getDefaultAppbar(context),
       body: const Center(
         child: DexSelectionScreen(),
       ),

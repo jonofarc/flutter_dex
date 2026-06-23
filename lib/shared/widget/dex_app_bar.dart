@@ -19,6 +19,7 @@ class DexAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: const TextStyle(
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.5,
           shadows: [
@@ -29,6 +30,9 @@ class DexAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
         ),
+      ),
+      iconTheme: const IconThemeData(
+        color: Colors.white, // back arrow color
       ),
       centerTitle: true,
       elevation: 0,

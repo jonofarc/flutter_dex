@@ -1,15 +1,68 @@
 {
   "@@locale": "es",
+
   "height": "Altura",
   "@height": {
-    "description": "Texto de la altura del Pokémon"
+    "description": "Pokemon height text"
   },
+
+  "weight": "Peso",
+  "@weight": {
+    "description": "Pokemon weight text"
+  },
+
   "category": "Categoría",
   "@category": {
-    "description": "Texto de la categoría del Pokémon"
+    "description": "Pokemon category text"
   },
+
   "name": "Nombre",
   "@name": {
-    "description": "Texto del nombre del Pokémon"
+    "description": "Pokemon name text"
+  },
+
+  "versions": "Versiones:",
+  "@versions": {
+    "description": "Versions text"
+  },
+
+  "baseStats": "Estadísticas base",
+  "@baseStats": {
+    "description": "Base stats section title"
+  },
+
+  "cry": "Grito",
+  "@cry": {
+    "description": "Play Pokemon cry button text"
+  },
+
+  "noRecordsFound": "No se encontraron registros",
+  "@noRecordsFound": {
+    "description": "Message shown when no records are available"
+  },
+
+  "dexViewScreenTitle": "Selección de vista de la Pokédex",
+  "@dexViewScreenTitle": {
+    "description": "Dex view selection screen title"
+  },
+
+  "unknown": "Desconocido",
+  "@unknown": {
+    "description": "Fallback text when value is missing"
+  },
+
+  "gender": "Género",
+  "@gender": {
+    "description": "Gender label"
+  },
+
+  "weaknesses": "Debilidades",
+  "@weaknesses": {
+    "description": "Pokemon type weaknesses label"
+  },
+
+  "type": "Tipo",
+  "@type": {
+    "description": "Pokemon type label"
   }
 }

@@ -19,6 +19,9 @@ class PokeDetailsViewMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = context.l10n;
+
+    final double containerWidth = MediaQuery.of(context).size.width * 0.4;
+
     return Scaffold(
       appBar: DexAppBar(
         title: "Details",
@@ -32,58 +35,72 @@ class PokeDetailsViewMobile extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 250,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: pokemon?.pokemonForm?.imageUrl ?? "",
-                        fit: BoxFit.contain,
-                      ),
+                  Container(
+                    width: containerWidth.clamp(0, 200),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: pokemon?.pokemonForm?.imageUrl ?? "",
+                      fit: BoxFit.contain,
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     flex: 1,
                     child: Card(
+                      color: Colors.blue.shade400,
                       margin: const EdgeInsets.all(0),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              pokemon?.pokemonForm?.name?.capitalize() ?? "",
-                              style: TextStyle(fontSize: 24),
-                            ),
-                            SizedBox(height: 12),
-                            Text(
-                              pokemon?.species?.getFlavorTextEntryByLanguage("en")?.flavorText?.cleanString() ?? "",
-                              // pokemon?.species?.flavorTextEntries?.first.flavorText?.cleanString() ?? "",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            SizedBox(height: 12),
-                            ElevatedButton(
-                              onPressed: () {
-                                WidgetsBinding.instance.addPostFrameCallback((_) async {
-                                  Utils.playSoundStream(pokemon?.cries?.legacy ?? pokemon?.cries?.latest);
-                                });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).primaryColor,
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        constraints: BoxConstraints(
+                          minHeight: containerWidth.clamp(0, 200),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                pokemon?.pokemonForm?.name?.capitalize() ?? "",
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.white,
                                 ),
                               ),
-                              child: Text(s.cry),
-                            ),
-                          ],
+                              const SizedBox(height: 12),
+                              Text(
+                                pokemon?.species?.getFlavorTextEntryByLanguage("en")?.flavorText?.cleanString() ?? "",
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              //this elevated button to the bottom of the card
+                              ElevatedButton(
+                                onPressed: () {
+                                  WidgetsBinding.instance.addPostFrameCallback((_) async {
+                                    Utils.playSoundStream(
+                                      pokemon?.cries?.legacy ?? pokemon?.cries?.latest,
+                                    );
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Theme.of(context).primaryColor,
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 10,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                child: Text(s.cry),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -108,14 +125,23 @@ class PokeDetailsViewMobile extends StatelessWidget {
                     ),
                     SizedBox(height: 12),
                     Row(
-                      children: const [
-                        Text("Gender"),
-                        SizedBox(width: 8),
-                        Icon(Icons.male),
-                        SizedBox(width: 4),
-                        Icon(Icons.female),
+                      children: [
+                        Text(
+                          s.gender,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(width: 8),
+                        ...?pokemon?.species?.getGenderList().map(
+                              (icon) => Padding(
+                                padding: const EdgeInsets.only(right: 4),
+                                child: Icon(
+                                  icon,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                       ],
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -129,7 +155,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                 child: Center(child: _buildPokemonStats(context)),
               ),
               const SizedBox(height: 20),
-              const Text("Type", style: TextStyle(fontSize: 16)),
+              Text(s.type, style: TextStyle(fontSize: 16, color: Colors.white)),
               const SizedBox(height: 10),
               Row(
                 children: pokemon?.pokemonForm?.types?.map((typeEntry) {
@@ -146,7 +172,7 @@ class PokeDetailsViewMobile extends StatelessWidget {
                     [],
               ),
               const SizedBox(height: 20),
-              const Text("Weaknesses", style: TextStyle(fontSize: 16)),
+              Text(s.weaknesses, style: TextStyle(fontSize: 16, color: Colors.white)),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 10,
@@ -199,7 +225,10 @@ class PokeDetailsViewMobile extends StatelessWidget {
           Text(
             value.toString(),
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 10),
+            style: const TextStyle(
+              fontSize: 10,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
@@ -212,18 +241,16 @@ class PokeDetailsViewMobile extends StatelessWidget {
 
     final statMap = pokemon?.mapStats() ?? {};
 
-    final maxStat = stats.isNotEmpty ? stats.map((e) => e.baseStat ?? 0).reduce((a, b) => a > b ? a : b) : 100;
-
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[400],
+        color: Colors.grey[500],
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(s.baseStats),
+          Text(s.baseStats, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -233,7 +260,6 @@ class PokeDetailsViewMobile extends StatelessWidget {
               return _buildStatColumn(
                 label: name.capitalize(),
                 value: statMap[name] ?? 0,
-                // maxValue: maxStat,
               );
             }).toList(),
           ),
@@ -254,7 +280,7 @@ class _InfoItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: const TextStyle(color: Colors.white70)),
+        Text(title, style: const TextStyle(color: Colors.white)),
         const SizedBox(height: 4),
         Text(value, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ],

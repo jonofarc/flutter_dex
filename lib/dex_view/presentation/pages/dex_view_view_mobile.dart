@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dex/dex_view/data/models/pokedex/pokemon_entry.dart';
 import 'package:flutter_dex/dex_view/domain/mappers/pokemon_entry_mapper.dart';
 import 'package:flutter_dex/helpers/l10n_extensions.dart';
+import 'package:flutter_dex/helpers/string_extensions.dart';
 import 'package:flutter_dex/poke_details/presentation/pages/poke_details_screen.dart';
 import 'package:flutter_dex/shared/widget/dex_app_bar.dart';
 import 'package:flutter_dex/shared/widget/dex_background.dart';
+import 'package:flutter_dex/shared/widget/outlined_text.dart';
 
 class DexViewViewMobile extends StatelessWidget {
   const DexViewViewMobile({super.key, this.pokemonEntries = const []});
@@ -62,11 +64,19 @@ class DexViewViewMobile extends StatelessWidget {
                               fit: BoxFit.contain,
                             ),
                             const SizedBox(height: 8),
-                            Text(
-                              entry.pokemonSpecies?.name ?? s.unknown,
+                            OutlinedText(
+                              entry.pokemonSpecies?.name?.capitalize() ?? s.unknown.capitalize(),
                               textAlign: TextAlign.center,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
+                              outlineColor: const Color(0xFF3561AD),
+                              outlineStrokeWeight: 5.0,
+                              style: const TextStyle(
+                                color: Color(0xFFFFCB08),
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.5,
+                              ),
                             ),
                           ],
                         ),

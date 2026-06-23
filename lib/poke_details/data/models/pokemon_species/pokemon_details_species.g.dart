@@ -12,6 +12,7 @@ PokemonDetailsSpecies _$PokemonDetailsSpeciesFromJson(
       flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>?)
           ?.map((e) => FlavorTextEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
+      genderRate: (json['gender_rate'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PokemonDetailsSpeciesToJson(
@@ -19,4 +20,5 @@ Map<String, dynamic> _$PokemonDetailsSpeciesToJson(
     <String, dynamic>{
       'flavor_text_entries':
           instance.flavorTextEntries?.map((e) => e.toJson()).toList(),
+      'gender_rate': instance.genderRate,
     };

@@ -1,43 +1,68 @@
 {
   "@@locale": "en",
+
   "height": "Height",
   "@height": {
     "description": "Pokemon height text"
   },
+
   "weight": "Weight",
   "@weight": {
     "description": "Pokemon weight text"
   },
+
   "category": "Category",
   "@category": {
     "description": "Pokemon category text"
   },
+
   "name": "Name",
   "@name": {
     "description": "Pokemon name text"
   },
+
   "versions": "Versions:",
   "@versions": {
     "description": "Versions text"
   },
+
   "baseStats": "Base Stats",
   "@baseStats": {
-    "description": "Base Stats text"
+    "description": "Base stats section title"
   },
+
   "cry": "Cry",
   "@cry": {
-    "description": "Cry text"
+    "description": "Play Pokemon cry button text"
   },
+
   "noRecordsFound": "No Records Found",
   "@noRecordsFound": {
-    "description": "No Records found text"
+    "description": "Message shown when no records are available"
   },
+
   "dexViewScreenTitle": "Dex View Selection",
   "@dexViewScreenTitle": {
-    "description": "Dex View selection title"
+    "description": "Dex view selection screen title"
   },
+
   "unknown": "Unknown",
   "@unknown": {
-    "description": "No species text Found"
+    "description": "Fallback text when value is missing"
+  },
+
+  "gender": "Gender",
+  "@gender": {
+    "description": "Gender label"
+  },
+
+  "weaknesses": "Weaknesses",
+  "@weaknesses": {
+    "description": "Pokemon type weaknesses label"
+  },
+
+  "type": "Type",
+  "@type": {
+    "description": "Pokemon type label"
   }
 }
