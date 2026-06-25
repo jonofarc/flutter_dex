@@ -1,4 +1,4 @@
-#Flutter Dex
+# Flutter Dex
 
 Flutter Dex is a fan-made Dex-style application built with Flutter. It uses the PokéAPI to display Pokémon data such as types, stats, and general information in a clean and simple interface.
 
