@@ -1,0 +1,158 @@
+{
+  "@@locale": "de",
+
+  "height": "Höhe",
+  "@height": {
+    "description": "Pokemon height text"
+  },
+
+  "weight": "Gewicht",
+  "@weight": {
+    "description": "Pokemon weight text"
+  },
+
+  "category": "Kategorie",
+  "@category": {
+    "description": "Pokemon category text"
+  },
+
+  "name": "Name",
+  "@name": {
+    "description": "Pokemon name text"
+  },
+
+  "versions": "Versionen:",
+  "@versions": {
+    "description": "Versions text"
+  },
+
+  "baseStats": "Grundwerte",
+  "@baseStats": {
+    "description": "Base stats section title"
+  },
+
+  "cry": "Cry",
+  "@cry": {
+    "description": "Play Pokemon cry button text"
+  },
+
+  "noRecordsFound": "Keine Einträge gefunden",
+  "@noRecordsFound": {
+    "description": "Message shown when no records are available"
+  },
+
+  "dexViewScreenTitle": "Dex-Ansicht auswählen",
+  "@dexViewScreenTitle": {
+    "description": "Dex view selection screen title"
+  },
+
+  "unknown": "Unbekannt",
+  "@unknown": {
+    "description": "Fallback text when value is missing"
+  },
+
+  "gender": "Geschlecht",
+  "@gender": {
+    "description": "Gender label"
+  },
+
+  "weaknesses": "Schwächen",
+  "@weaknesses": {
+    "description": "Pokemon type weaknesses label"
+  },
+
+  "type": "Typ",
+  "@type": {
+    "description": "Pokemon type label"
+  },
+
+  "typeNormal": "Normal",
+  "@typeNormal": {
+    "description": "Pokemon type: Normal"
+  },
+
+  "typeFire": "Feuer",
+  "@typeFire": {
+    "description": "Pokemon type: Fire"
+  },
+
+  "typeWater": "Wasser",
+  "@typeWater": {
+    "description": "Pokemon type: Water"
+  },
+
+  "typeElectric": "Elektro",
+  "@typeElectric": {
+    "description": "Pokemon type: Electric"
+  },
+
+  "typeGrass": "Pflanze",
+  "@typeGrass": {
+    "description": "Pokemon type: Grass"
+  },
+
+  "typeIce": "Kalt",
+  "@typeIce": {
+    "description": "Pokemon type: Ice"
+  },
+
+  "typeFighting": "Kampf",
+  "@typeFighting": {
+    "description": "Pokemon type: Fighting"
+  },
+
+  "typePoison": "Gift",
+  "@typePoison": {
+    "description": "Pokemon type: Poison"
+  },
+
+  "typeGround": "Boden",
+  "@typeGround": {
+    "description": "Pokemon type: Ground"
+  },
+
+  "typeFlying": "Flug",
+  "@typeFlying": {
+    "description": "Pokemon type: Flying"
+  },
+
+  "typePsychic": "Psychisch",
+  "@typePsychic": {
+    "description": "Pokemon type: Psychic"
+  },
+
+  "typeBug": "Insekt",
+  "@typeBug": {
+    "description": "Pokemon type: Bug"
+  },
+
+  "typeRock": "Fels",
+  "@typeRock": {
+    "description": "Pokemon type: Rock"
+  },
+
+  "typeGhost": "Geist",
+  "@typeGhost": {
+    "description": "Pokemon type: Ghost"
+  },
+
+  "typeDragon": "Draconischer",
+  "@typeDragon": {
+    "description": "Pokemon type: Dragon"
+  },
+
+  "typeDark": "Dunkel",
+  "@typeDark": {
+    "description": "Pokemon type: Dark"
+  },
+
+  "typeSteel": "Stahl",
+  "@typeSteel": {
+    "description": "Pokemon type: Steel"
+  },
+
+  "typeFairy": "Zoo",
+  "@typeFairy": {
+    "description": "Pokemon type: Fairy"
+  }
+}
